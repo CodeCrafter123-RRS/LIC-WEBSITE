@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>LIC Insurance Plans - Srikant Kumar Sahu</title>
+  <style>
+    :root {
+      --primary: #ff5c00;
+      --dark-bg: #111;
+      --card-bg: #1b1b1b;
+      --light: #fff;
+      --highlight: #00d084;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #fff;
+      color: #111;
+      line-height: 1.6;
+    }
+
+    header {
+      background: #f5f5f5;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid #ddd;
+    }
+
+    header nav a {
+      margin: 0 1rem;
+      text-decoration: none;
+      color: #111;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+
+    header nav a.active {
+      color: var(--primary);
+    }
+
+    .hero {
+      background: linear-gradient(to right, #ff5c00, #d84b00);
+      padding: 3rem 2rem;
+      text-align: center;
+      color: #fff;
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero button {
+      padding: 0.8rem 1.5rem;
+      background: #fff;
+      border: none;
+      color: var(--primary);
+      font-weight: bold;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .hero button:hover {
+      background: #ffe8d8;
+    }
+
+    section.plans {
+      background: var(--dark-bg);
+      padding: 3rem 2rem;
+      color: var(--light);
+      text-align: center;
+    }
+
+    section.plans h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .plan-cards {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 2px solid transparent;
+      padding: 1.5rem;
+      border-radius: 15px;
+      width: 300px;
+      text-align: left;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      position: relative;
+    }
+
+    .card:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+      border-color: var(--primary);
+    }
+
+    .badge {
+      position: absolute;
+      top: -10px;
+      left: 15px;
+      background: var(--primary);
+      color: #fff;
+      padding: 0.3rem 0.8rem;
+      border-radius: 5px;
+      font-size: 0.8rem;
+    }
+
+    .card h3 {
+      margin-top: 1rem;
+      font-size: 1.3rem;
+    }
+
+    .card ul {
+      list-style: none;
+      margin: 1rem 0;
+      padding: 0;
+      font-size: 0.95rem;
+    }
+
+    .card ul li {
+      margin-bottom: 0.5rem;
+    }
+
+    .wishlist-icon {
+  position: absolute;
+  top: 12px;
+  right: 15px;
+  font-size: 1.3rem;
+  color: #ccc;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 10;
+}
+
+.wishlist-icon:hover {
+  color: var(--primary);
+  transform: scale(1.2);
+}
+
+.wishlist-icon.active {
+  color: red;
+}
+
+
+    .btn-group {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .btn {
+      flex: 1;
+      padding: 0.6rem;
+      border: none;
+      font-weight: bold;
+      cursor: pointer;
+      border-radius: 6px;
+      transition: background 0.3s;
+    }
+
+    .btn-download {
+      background: #444;
+      color: #fff;
+    }
+
+    .btn-download:hover {
+      background: #555;
+    }
+
+    .btn-quote {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    .btn-quote:hover {
+      background: #e94f00;
+    }
+
+    .consult-footer {
+      background: #fff;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    .consult-footer button {
+      padding: 0.8rem 1.5rem;
+      margin: 0.5rem;
+      border: none;
+      font-weight: bold;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .btn-orange {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    .btn-orange:hover {
+      background: #e34a00;
+    }
+
+    .btn-dark {
+      background: #111;
+      color: #fff;
+    }
+
+    .btn-dark:hover {
+      background: #222;
+    }
+
+        .social-floating {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      z-index: 999;
+    }
+
+    .social-floating a {
+      background: white;
+      border-radius: 50%;
+      width: 45px;
+      height: 45px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 22px;
+      box-shadow: 0 0 6px rgba(0,0,0,0.2);
+    }
+
+    @media screen and (max-width: 768px) {
+      .plan-cards {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .card {
+        width: 90%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div><strong>SK</strong> <span style="color: var(--primary); font-size: 0.8rem;">LIC Authorized Agent</span></div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="plans.html" class="active">Plans</a>
+      <a href="about.html">About</a>
+      <a href="register.html" style="color: var(--primary);">Register</a>
+    </nav>
+    <div>
+      📞 +91 9437261048 |
+      📧 srikantabam@gmail.com
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1>LIC Insurance Plans</h1>
+    <p>Explore our comprehensive range of life insurance plans designed to secure your family’s financial future.</p>
+    <button>Get Personalized Recommendations</button>
+  </section>
+
+  <!-- Plans Section -->
+  <section class="plans">
+    <h2>Choose the Right Plan for You</h2>
+    <p>Detailed policy information coming soon. Contact Srikant for immediate assistance with policy selection.</p>
+
+    <div class="plan-cards">
+
+      <!-- Plan 1 -->
+      <div class="card">
+        <div class="wishlist-icon" onclick="toggleWishlist(this)">♡</div>
+        <div class="badge">Popular</div>
+        <h3>Jeevan Anand</h3>
+        <p>Comprehensive life insurance with investment benefits.</p>
+        <ul>
+          <li>• Age: 18–50 years</li>
+          <li>• Policy term: 15–35 years</li>
+          <li>• Maturity + Death benefit</li>
+          <li>• Tax benefits under 80C</li>
+        </ul>
+        <div class="btn-group">
+          <button class="btn btn-download">⬇ Download Brochure</button>
+          <button class="btn btn-quote">Get Quote →</button>
+        </div>
+      </div>
+
+      <!-- Plan 2 -->
+      <div class="card">
+        <div class="wishlist-icon" onclick="toggleWishlist(this)">♡</div>
+        <div class="badge" style="background:#888;">Term Plan</div>
+        <h3>Tech Term</h3>
+        <p>Pure term insurance with high coverage at low premiums.</p>
+        <ul>
+          <li>• Age: 18–65 years</li>
+          <li>• Policy term: 10–40 years</li>
+          <li>• High sum assured</li>
+          <li>• Affordable premiums</li>
+        </ul>
+        <div class="btn-group">
+          <button class="btn btn-download">⬇ Download Brochure</button>
+          <button class="btn btn-quote">Get Quote →</button>
+        </div>
+      </div>
+
+      <!-- Plan 3 -->
+      <div class="card">
+        <div class="wishlist-icon" onclick="toggleWishlist(this)">♡</div>
+        <div class="badge" style="background: var(--highlight);">Investment</div>
+        <h3>New Jeevan Nidhi</h3>
+        <p>Deferred annuity plan for secure retirement planning.</p>
+        <ul>
+          <li>• Age: 20–58 years</li>
+          <li>• Vesting age: 58–70 years</li>
+          <li>• Guaranteed pension</li>
+          <li>• Tax benefits</li>
+        </ul>
+        <div class="btn-group">
+          <button class="btn btn-download">⬇ Download Brochure</button>
+          <button class="btn btn-quote">Get Quote →</button>
+        </div>
+      </div>
+
+      <!-- Plan 4 -->
+<div class="card">
+    <div class="wishlist-icon" onclick="toggleWishlist(this)">♡</div>
+  <div class="badge">Endowment</div>
+  <h3>Jeevan Utav</h3>
+  <p>Ideal for long-term savings with life cover and guaranteed benefits.</p>
+  <ul>
+    <li>• Age: 18–55 years</li>
+    <li>• Policy term: 15–25 years</li>
+    <li>• Guaranteed maturity returns</li>
+    <li>• Annual loyalty additions</li>
+  </ul>
+  <div class="btn-group">
+    <button class="btn btn-download">⬇ Download Brochure</button>
+    <button class="btn btn-quote">Get Quote →</button>
+  </div>
+</div>
+
+<!-- Plan 5 -->
+<div class="card">
+    <div class="wishlist-icon" onclick="toggleWishlist(this)">♡</div>
+  <div class="badge" style="background:#ff7a00;">Whole Life</div>
+  <h3>Jeevan Umang</h3>
+  <p>Lifetime income after premium payment term with insurance protection.</p>
+  <ul>
+    <li>• Age: 18–55 years</li>
+    <li>• Income after 15, 20, 25, or 30 years</li>
+    <li>• Lifetime annual survival benefits</li>
+    <li>• Maturity + Death benefit</li>
+  </ul>
+  <div class="btn-group">
+    <button class="btn btn-download">⬇ Download Brochure</button>
+    <button class="btn btn-quote">Get Quote →</button>
+  </div>
+</div>
+
+<!-- Plan 6 -->
+<div class="card">
+    <div class="wishlist-icon" onclick="toggleWishlist(this)">♡</div>
+  <div class="badge" style="background:#2196f3;">Limited Premium</div>
+  <h3>Jeevan Labh</h3>
+  <p>Combination of protection and savings with short premium terms.</p>
+  <ul>
+    <li>• Age: 18–59 years</li>
+    <li>• Policy term: 16, 21, 25 years</li>
+    <li>• Premium terms: 10, 15, 16 years</li>
+    <li>• High bonus potential</li>
+  </ul>
+  <div class="btn-group">
+    <button class="btn btn-download">⬇ Download Brochure</button>
+    <button class="btn btn-quote">Get Quote →</button>
+  </div>
+</div>
+
+
+    </div>
+  </section>
+
+  <!-- Call to Action -->
+  <section class="consult-footer">
+    <p>Want to see all available plans with detailed comparison?</p>
+    <button class="btn-orange">Schedule Consultation</button>
+    <button class="btn-dark">Chat on WhatsApp</button>
+  </section>
+
+  <!-- Floating Social Icons -->
+  <div class="social-floating">
+    <a href="#" title="WhatsApp">🟢</a>
+    <a href="#" title="Telegram">🔵</a>
+    <a href="#" title="Call">📞</a>
+  </div>
+
+<script>
+  function toggleWishlist(icon) {
+    icon.classList.toggle('active');
+    icon.innerHTML = icon.classList.contains('active') ? '❤️' : '♡';
+  }
+</script>
+
+
+</body>
+</html>
