@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About - Srikant Kumar Sahu</title>
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #ff5c00;
+      --dark-bg: #111;
+      --card-bg: #1b1b1b;
+      --light: #fff;
+      --highlight: #00d084;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #fff;
+      color: #111;
+      line-height: 1.6;
+    }
+
+    header {
+      background: #f5f5f5;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid #ddd;
+    }
+
+    header nav a {
+      margin: 0 1rem;
+      text-decoration: none;
+      color: #111;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+
+    header nav a.active {
+      color: var(--primary);
+    }
+
+    .hero {
+      background: linear-gradient(to right, #ff5c00, #d84b00);
+      color: #fff;
+      padding: 4rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .hero-text {
+      flex: 1;
+      padding-right: 2rem;
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero .btns button {
+      margin-right: 1rem;
+      padding: 0.7rem 1.5rem;
+      border: none;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .btn-orange {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    .btn-dark {
+      background: #111;
+      color: #fff;
+    }
+
+    .hero-img {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+    }
+
+    .hero-img .circle {
+      width: 180px;
+      height: 180px;
+      background: #fff;
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: #ff5c00;
+      font-size: 1.4rem;
+      border: 10px solid var(--primary);
+      box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+      text-align: center;
+    }
+
+    .section {
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+
+    .section h2 {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .section p {
+      color: #333;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .values, .timeline, .contact {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .card {
+      background: #111;
+      color: #fff;
+      padding: 1.5rem;
+      border-radius: 12px;
+      width: 240px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+    }
+
+    .timeline-item {
+      background: #111;
+      color: #fff;
+      padding: 1rem 1.5rem;
+      border-radius: 10px;
+      width: 300px;
+    }
+
+    .contact-card {
+      text-align: center;
+      background: #111;
+      color: #fff;
+      padding: 1.5rem;
+      border-radius: 10px;
+      width: 260px;
+    }
+
+    .contact-card button {
+      margin-top: 0.8rem;
+      padding: 0.6rem 1rem;
+      border: none;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .orange-btn {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    .dark-btn {
+      background: #000;
+      color: #fff;
+    }
+
+    @media screen and (max-width: 768px) {
+      .hero {
+        flex-direction: column;
+      }
+
+      .hero-text, .hero-img {
+        flex: 100%;
+        padding: 0;
+        margin-bottom: 1.5rem;
+      }
+    }
+
+        /* Floating Social Buttons */
+    .social-floating {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      z-index: 999;
+    }
+
+    .social-floating a {
+      background: white;
+      border-radius: 50%;
+      width: 45px;
+      height: 45px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 22px;
+      box-shadow: 0 0 6px rgba(0,0,0,0.2);
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div><strong>SK</strong> <span style="color: var(--primary); font-size: 0.8rem;">LIC Authorized Agent</span></div>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="plans.html">Plans</a>
+    <a href="about.html" class="active">About</a>
+    <a href="register.html" style="color: var(--primary);">Register</a>
+  </nav>
+  <div>
+    📞 +91 9876543210 |
+    📧 srikant@lic.com
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-text" data-aos="fade-right">
+    <div class="badge">LIC Authorized Agent</div>
+    <h1>Meet Srikant Kumar Sahu</h1>
+    <p>"With over a decade of trust and service, I help families secure their financial future with the best LIC policies tailored to their needs."</p>
+    <div class="btns">
+      <button class="btn-orange">Schedule Consultation</button>
+      <button class="btn-dark">Call Now</button>
+    </div>
+  </div>
+  <div class="hero-img" data-aos="fade-left">
+    <div class="circle">
+      SK<br/>
+      <small style="font-size: 0.7rem; color:#000;">Srikant Kumar Sahu<br/>LIC Agent</small>
+    </div>
+  </div>
+</section>
+
+<section class="section" data-aos="fade-up">
+  <h2>My Mission</h2>
+  <p><span style="color: var(--primary); font-weight: bold;">"Helping every Indian plan their tomorrow, today."</span></p>
+  <p>My mission is to make financial security accessible to every family by providing personalized insurance solutions, expert guidance, and lifelong support.</p>
+</section>
+
+<section class="section" data-aos="fade-up">
+  <h2>Core Values</h2>
+  <p>The principles that guide my service and relationship with every client</p>
+  <div class="values">
+    <div class="card">🔒 <h3>Trust</h3><p>Building lasting relationships based on honesty and integrity</p></div>
+    <div class="card">👨‍👩‍👧‍👦 <h3>Family First</h3><p>Treating every client’s family as my own</p></div>
+    <div class="card">📘 <h3>Guidance</h3><p>Providing expert advice for informed financial decisions</p></div>
+    <div class="card">📈 <h3>Commitment</h3><p>Dedicated to excellence in service and support</p></div>
+  </div>
+</section>
+
+<section class="section" data-aos="fade-up">
+  <h2>Professional Journey</h2>
+  <p>A decade of growth, achievement, and service excellence</p>
+  <div class="timeline">
+    <div class="timeline-item">📅 <strong>2015</strong><br/> Began journey as LIC agent</div>
+    <div class="timeline-item">📅 <strong>2018</strong><br/> 100+ Happy Customers</div>
+    <div class="timeline-item">📅 <strong>2020</strong><br/> MDRT Qualification</div>
+    <div class="timeline-item">📅 <strong>2024</strong><br/> 1000+ Satisfied Clients</div>
+  </div>
+</section>
+
+<section class="section" data-aos="fade-up">
+  <h2>Get in Touch</h2>
+  <p>Ready to secure your family’s future? Let’s start the conversation</p>
+  <div class="contact">
+    <div class="contact-card">📞 <h3>Call Me</h3><p>+91 9876543210</p><button class="orange-btn">Call Now</button></div>
+    <div class="contact-card">📧 <h3>Email Me</h3><p>srikant@lic.com</p><button class="dark-btn">Send Email</button></div>
+    <div class="contact-card">📍 <h3>Visit Office</h3><p>Premium Point LIC Office<br/> Bhubaneswar, Odisha</p><button class="btn">Get Directions</button></div>
+  </div>
+</section>
+
+  <!-- Floating Social Icons -->
+<div class="social-floating">
+  <a href="https://wa.me/919437261048" title="WhatsApp" target="_blank">
+    <img src="frontend/assests/images/whatsapp.png" alt="WhatsApp" width="32" height="32" />
+  </a>
+  <a href="sms:+919437261048" title="SMS">
+    <img src="frontend/assests/images/sms.jpg" alt="SMS" width="32" height="32" />
+  </a>
+  <a href="https://twitter.com/SRIKANTA KUMAR SAHU" title="twitter" target="_blank">
+    <img src="frontend/assests/images/x.png" alt="Twitter" width="32" height="32" />
+  </a>
+  <a href="https://instagram.com/yourusername" title="Instagram" target="_blank">
+    <img src="frontend/assests/images/insta.png" alt="Instagram" width="32" height="32" />
+  </a>
+  <a href="tel:+919437261048" title="Call">
+    <img src="frontend/assests/images/phone.png" alt="Call" width="32" height="32" />
+  </a>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+<script>
+  AOS.init();
+</script>
+
+</body>
+</html>

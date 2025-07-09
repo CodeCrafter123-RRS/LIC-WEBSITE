@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Service Cities</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #fef9f5;
+      padding: 2rem;
+    }
+
+    #city-section {
+      display: none;
+      background-color: #fff3ea;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      max-width: 600px;
+      margin: auto;
+    }
+
+    h2 {
+      color: #ff5c00;
+      margin-bottom: 1rem;
+    }
+
+    #searchInput {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 1rem;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    li {
+      padding: 8px;
+      background: #fff;
+      border: 1px solid #eee;
+      margin-bottom: 5px;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Simulate a logged in user -->
+<script>
+  const currentUser = "Srikanta"; // You can change this to test
+
+  document.addEventListener("DOMContentLoaded", () => {
+    if (currentUser.toLowerCase() === "srikanta") {
+      document.getElementById("city-section").style.display = "block";
+    }
+  });
+
+  function filterCities() {
+    const input = document.getElementById("searchInput").value.toLowerCase();
+    const listItems = document.querySelectorAll("#cityList li");
+
+    listItems.forEach((li) => {
+      const city = li.textContent.toLowerCase();
+      li.style.display = city.includes(input) ? "block" : "none";
+    });
+  }
+</script>
+
+<!-- Hidden City Section -->
+<div id="city-section">
+  <h2>Cities under My Service</h2>
+  <input type="text" id="searchInput" placeholder="Search city..." onkeyup="filterCities()"/>
+<ul id="cityList">
+  <li><a href="city-customers.html?city=berhampur">Berhampur</a></li>
+  <li><a href="city-customers.html?city=hinjilikatu">Hinjilikatu</a></li>
+  <li><a href="city-customers.html?city=seragada">Seragada</a></li>
+  <!-- Repeat for other cities -->
+</ul>
+
+</div>
+<script>
+cities.forEach(city => {
+  const li = document.createElement("li");
+  const link = document.createElement("a");
+  link.href = `city-customers.html?city=${city}`;
+  link.textContent = city.charAt(0).toUpperCase() + city.slice(1);
+  li.appendChild(link);
+  cityList.appendChild(li);
+});
+</script>
+
+</body>
+</html>
