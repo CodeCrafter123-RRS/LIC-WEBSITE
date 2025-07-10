@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Srikant's Dashboard</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f5f5f5;
+      text-align: center;
+      padding: 50px;
+    }
+    #protected {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+<h2>Enter Password to Continue</h2>
+<input type="password" id="password" placeholder="Enter password">
+<button onclick="checkPassword()">Submit</button>
+
+<div id="protected">
+  <h1>Welcome, Srikant</h1>
+  <p>This is your private dashboard.</p>
+  <ul>
+    <li>Total Clients: 3000+</li>
+    <li>Policies Sold: 5000+</li>
+    <li>Cities Covered: 20+</li>
+    <!-- Add anything specific you want -->
+  </ul>
+</div>
+
+<script>
+  function checkPassword() {
+    const input = document.getElementById("password").value;
+    const secret = "srikant123"; // 🔐 CHANGE THIS to your own password
+
+    if (input === secret) {
+      document.getElementById("protected").style.display = "block";
+    } else {
+      alert("Incorrect password. Access denied.");
+    }
+  }
+</script>
+
+</body>
+</html>

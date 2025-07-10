@@ -173,77 +173,271 @@
       font-size: 0.9rem;
     }
 
-    /* Badges */
-    .badges {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      padding: 40px 20px;
-      gap: 20px;
-      background: #f6f6f6;
-    }
-
-    .badge {
-      background: white;
-      padding: 20px;
-      width: 200px;
-      text-align: center;
-      border-radius: 10px;
-      box-shadow: 0 0 6px rgba(0,0,0,0.1);
-    }
-
-    .badge h3 {
-      color: var(--orange);
-      margin-bottom: 8px;
-    }
 
     /* Why LIC */
-    .why {
-      padding: 40px 20px;
-      text-align: center;
-    }
+.why-lic {
+  text-align: center;
+  padding: 4rem 2rem;
+  background: #f9f9f9;
+}
 
-    .why h2 {
-      color: var(--orange);
-      margin-bottom: 10px;
-    }
+.why-lic h2 {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: #111;
+}
 
-    .why .grid {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 20px;
-      margin-top: 20px;
-    }
+.why-lic .highlight {
+  color: #f26500;
+}
 
-    .why .grid div {
-      width: 220px;
-      background: #fff;
-      padding: 15px;
-      border: 1px solid #eee;
-      border-radius: 8px;
-      font-size: 0.9rem;
-    }
+.why-lic p {
+  color: #555;
+  font-size: 1rem;
+  margin: 0.75rem auto 2rem;
+  max-width: 700px;
+}
 
-    /* Testimonials */
-    .testimonials {
-      background: linear-gradient(to bottom, #804000, #4d2600);
-      color: white;
-      text-align: center;
-      padding: 40px 20px;
-    }
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
 
-    .testimonials blockquote {
-      font-style: italic;
-      font-size: 1.1rem;
-      max-width: 600px;
-      margin: 0 auto;
-    }
+.why-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  font-size: 1rem;
+  color: #222;
+  line-height: 1.4;
+}
 
-    .testimonials footer {
-      margin-top: 10px;
-      font-weight: bold;
-    }
+.why-item i {
+  color: #f26500;
+  font-size: 1.2rem;
+  margin-top: 2px;
+}
+
+
+.why-srikant {
+  padding: 5rem 2rem;
+  background: #fff;
+}
+
+.why-srikant .container {
+  max-width: 1200px;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3rem;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.why-srikant .left {
+  flex: 1 1 500px;
+}
+
+.why-srikant h2 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #111;
+  line-height: 1.3;
+}
+
+.why-srikant .highlight {
+  color: #f26500;
+}
+
+.why-srikant .highlight-orange {
+  color: #f26500;
+}
+
+.why-srikant p {
+  margin-top: 1rem;
+  color: #444;
+  line-height: 1.6;
+  font-size: 1.1rem;
+}
+
+.features {
+  list-style: none;
+  padding: 0;
+  margin: 2rem 0;
+}
+
+.features li {
+  font-size: 1rem;
+  color: #333;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.features li i {
+  color: #f26500;
+}
+
+.cta-buttons {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.btn-orange {
+  background: #f26500;
+  color: white;
+  padding: 0.8rem 1.5rem;
+  border-radius: 10px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.btn-orange:hover {
+  background: #d65200;
+}
+
+.btn-dark {
+  background: #000;
+  color: white;
+  padding: 0.8rem 1.5rem;
+  border-radius: 10px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.btn-dark:hover {
+  background: #222;
+}
+
+.right {
+  flex: 1 1 350px;
+  display: flex;
+  justify-content: center;
+}
+
+.badge-ring {
+  background: conic-gradient(#f26500, #b34200);
+  border-radius: 50%;
+  padding: 12px;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.08);
+}
+
+.badge-inner {
+  background: #fff;
+  border-radius: 50%;
+  width: 280px;
+  height: 280px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.circle-logo {
+  background: #f26500;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 1.8rem;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.badge-inner h3 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #111;
+  margin: 0;
+}
+
+.sub {
+  color: #f26500;
+  margin-bottom: 0.8rem;
+  font-weight: 500;
+}
+
+.chart-icon {
+  font-size: 1.2rem;
+  color: #f26500;
+}
+
+
+.hero {
+  margin-bottom: 8rem;
+}
+
+.badges-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  margin: 5rem auto;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  padding: 0 1rem;
+}
+
+.badge {
+  background-color: #111;
+  color: #fff;
+  width: 200px;
+  height: 200px;
+  border-radius: 12px;
+  padding: 1rem;
+  text-align: center;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.badge:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 24px rgba(0,0,0,0.3);
+}
+
+.badge .emoji {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.badge h3 {
+  color: #ff6600;
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+.badge p {
+  font-size: 0.85rem;
+  color: #ccc;
+  margin: 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .badges-section {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .badge {
+    width: 90%;
+    height: auto;
+  }
+}
 
     /* CTA Section */
     .cta-section {
@@ -259,6 +453,7 @@
   margin-bottom: 0.5rem;
   color: #fff;
 }
+
 
 .cta-section p {
   font-size: 1.1rem;
@@ -411,6 +606,108 @@ footer {
   box-shadow: 0 0 10px rgba(0,0,0,0.5); /* subtle glow */
 }
 
+.testimonial-section {
+  background: linear-gradient(to bottom right, #5c3e30, #c2b0a0);
+  color: #1f2937;
+  text-align: center;
+  padding: 3rem 1rem;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.testimonial-section h2 {
+  font-size: 2rem;
+  color: #1f2937;
+  margin-bottom: 0.5rem;
+}
+
+.subheading {
+  font-size: 1rem;
+  color: #f3f4f6;
+  margin-bottom: 2rem;
+}
+
+.testimonial-card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+  position: relative;
+  transition: all 0.4s ease-in-out;
+}
+
+.stars {
+  color: #ff5c00;
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+}
+
+.testimonial-card p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  color: #374151;
+}
+
+.author-info {
+  font-size: 0.95rem;
+  color: #4b5563;
+}
+
+.author-info strong {
+  display: block;
+  font-weight: bold;
+  color: #111827;
+}
+
+.policy {
+  background-color: #ff5c00;
+  color: white;
+  border-radius: 20px;
+  padding: 0.4rem 1rem;
+  font-size: 0.85rem;
+  position: absolute;
+  bottom: 1.2rem;
+  right: 1.5rem;
+}
+
+.testimonial-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1.5rem;
+  gap: 1rem;
+}
+
+.testimonial-controls button {
+  background: black;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.dots {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.dots span {
+  width: 8px;
+  height: 8px;
+  background: #d1d5db;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.dots .active {
+  background: #ff5c00;
+}
+
     /* Floating Social Buttons */
     .social-floating {
       position: fixed;
@@ -483,58 +780,131 @@ footer {
     </div>
   </section>
 
-  <!-- Badges -->
-  <section class="badges">
-    <div class="badge">
-      <h3>IRDAI Certified</h3>
-      <p>Authorized LIC Agent</p>
-    </div>
-    <div class="badge">
-      <h3>26+ Years</h3>
-      <p>Trusted by 4000+ Families</p>
-    </div>
-    <div class="badge">
-      <h3>CM CLUB MEMBER Agent</h3>
-      <p>Million Dollar Round Table</p>
-    </div>
-  </section>
+<!-- Badge Section -->
+<section class="badges-section">
+  <div class="badge">
+    <div class="emoji">✅</div>
+    <h3>IRDAI Certified</h3>
+    <p>Authorized LIC Agent</p>
+  </div>
+  <div class="badge">
+    <div class="emoji">🎯</div>
+    <h3>25+ Years</h3>
+    <p>Trusted by 4000+ Families</p>
+  </div>
+  <div class="badge">
+    <div class="emoji">🏆</div>
+    <h3>CM CLUB Agent</h3>
+    <p>Chairman's Club Member</p>
+  </div>
+</section>
 
-  <!-- Why LIC -->
-  <section class="why">
-    <h2>Why Choose LIC of India?</h2>
-    <p>India's largest and most trusted life insurance company with a legacy of over 67 years</p>
-    <div class="grid">
-      <div>India’s Most Trusted Insurance Company</div>
-      <div>97.79% Claim Settlement Ratio</div>
-      <div>₹45+ Lakh Crore AUM</div>
-      <div>Government Guaranteed Policies</div>
-      <div>Pan-India Service Network</div>
-      <div>Tax Benefits under Section 80C & 10(10D)</div>
-    </div>
-  </section>
+<!-- Why LIC -->
+<section class="why-lic">
+  <h2><span>Why Choose</span> <span class="highlight">LIC of India?</span></h2>
+  <p>India's largest and most trusted life insurance company with a legacy of over 67 years</p>
 
-  <!-- Why Srikant -->
-  <section class="why">
-    <h2>Why Choose Srikant as Your LIC Agent?</h2>
-    <p>With over a decade of experience and 1000+ satisfied customers, I provide personalized insurance solutions that truly protect your family's future.</p>
-    <div class="grid">
-      <div>📌 Personalized Policy Recommendations</div>
-      <div>✅ Quick Claim Settlement Assistance</div>
-      <div>📞 24/7 Customer Support</div>
-      <div>💼 Free Financial Planning Consultation</div>
-      <div>🧾 Digital Documentation & Payment</div>
-      <div>📬 Regular Policy Review & Updates</div>
+  <div class="why-grid">
+    <div class="why-item">
+      <i class="fas fa-check-circle"></i>
+      <span>India’s Most Trusted Insurance Company</span>
     </div>
-  </section>
+    <div class="why-item">
+      <i class="fas fa-check-circle"></i>
+      <span>97.79% Claim Settlement Ratio</span>
+    </div>
+    <div class="why-item">
+      <i class="fas fa-check-circle"></i>
+      <span>₹45+ Lakh Crore Assets Under Management</span>
+    </div>
+    <div class="why-item">
+      <i class="fas fa-check-circle"></i>
+      <span>Government Guaranteed Policies</span>
+    </div>
+    <div class="why-item">
+      <i class="fas fa-check-circle"></i>
+      <span>Pan-India Service Network</span>
+    </div>
+    <div class="why-item">
+      <i class="fas fa-check-circle"></i>
+      <span>Tax Benefits under Section 80C & 10(10D)</span>
+    </div>
+  </div>
+</section>
+
+<!-- FontAwesome for Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+
+<!-- Why Choose Srikant Section -->
+<section class="why-srikant">
+  <div class="container">
+    <div class="left">
+      <h2>
+        Why Choose <span class="highlight">Srikant</span> as Your<br>
+        <span class="highlight-orange">LIC Agent?</span>
+      </h2>
+      <p>
+        With over a decade of experience and 2500+ satisfied customers,<br>
+        I provide personalized insurance solutions that truly protect your<br>
+        family's future.
+      </p>
+
+      <ul class="features">
+        <li><i class="fas fa-heart"></i> Personalized Policy Recommendations</li>
+        <li><i class="fas fa-heart"></i> Quick Claim Settlement Assistance</li>
+        <li><i class="fas fa-heart"></i> 24/7 Customer Support</li>
+        <li><i class="fas fa-heart"></i> Free Financial Planning Consultation</li>
+        <li><i class="fas fa-heart"></i> Digital Documentation & Payment</li>
+        <li><i class="fas fa-heart"></i> Regular Policy Review & Updates</li>
+      </ul>
+
+      <div class="cta-buttons">
+        <a href="#" class="btn-orange"><i class="fas fa-phone"></i> Call Now</a>
+        <a href="#" class="btn-dark">Learn More About Me</a>
+      </div>
+    </div>
+
+    <div class="right">
+      <div class="badge-ring">
+        <div class="badge-inner">
+          <div class="circle-logo">SK</div>
+          <h3>Srikant Kumar Sahu</h3>
+          <p class="sub">LIC Agent</p>
+          <i class="fas fa-chart-line chart-icon"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <!-- Testimonials -->
-  <section class="testimonials">
-    <h2>What Our Customers Say</h2>
-    <blockquote>
-      “Srikant sir helped me choose the perfect LIC policy for my family’s future. His guidance was invaluable, and the claim process was seamless.”
-    </blockquote>
-    <footer>Rajesh Kumar, Bhubaneswar</footer>
-  </section>
+<section class="testimonial-section">
+  <h2>What Our Customers Say</h2>
+  <p class="subheading">Over 1000+ satisfied customers trust Srikant Kumar Sahu for their insurance needs across Odisha</p>
+
+  <div class="testimonial-card">
+    <div class="stars">★★★★★</div>
+    <p id="testimonial-text">
+      "Very helpful and patient. Srikant took time to understand my needs and suggested the best policy options. The premium payment process is also very convenient."
+    </p>
+    <div class="author-info">
+      <strong id="testimonial-author">Sunita Devi</strong>
+      <span id="testimonial-location">Berhampur</span>
+    </div>
+    <span class="policy" id="testimonial-plan">Jeevan Anand</span>
+  </div>
+
+  <!-- Dots + Arrows -->
+  <div class="testimonial-controls">
+    <button onclick="prevTestimonial()">‹</button>
+    <div class="dots" id="testimonial-dots"></div>
+    <button onclick="nextTestimonial()">›</button>
+  </div>
+</section>
 
   <!-- CTA -->
 <section class="cta-section">
@@ -612,7 +982,6 @@ Let me help you plan a safer, smarter financial future — because your family d
   </div>
 </footer>
 
-
   <!-- Floating Social Icons -->
 <div class="social-floating">
   <a href="https://wa.me/919437261048" title="WhatsApp" target="_blank">
@@ -631,6 +1000,75 @@ Let me help you plan a safer, smarter financial future — because your family d
     <img src="frontend/assests/images/phone.png" alt="Call" width="32" height="32" />
   </a>
 </div>
+
+<script>
+const testimonials = [
+  {
+    text: "Very helpful and patient. Srikant took time to understand my needs and suggested the best policy options. The premium payment process is also very convenient.",
+    author: "Sunita Devi",
+    location: "Berhampur",
+    plan: "Jeevan Anand"
+  },
+  {
+    text: "Extremely professional and reliable. Got my life insurance sorted without hassle.",
+    author: "Rajesh Kumar",
+    location: "Bhubaneswar",
+    plan: "Jeevan Labh"
+  },
+  {
+    text: "Very smooth experience. The support was excellent from start to finish.",
+    author: "Anita Sahu",
+    location: "Cuttack",
+    plan: "Child Future Plan"
+  },
+  {
+    text: "Knowledgeable agent and explains everything in detail. Great service!",
+    author: "Debasis Nayak",
+    location: "Ganjam",
+    plan: "Term Plan"
+  }
+];
+
+let currentIndex = 0;
+const textEl = document.getElementById('testimonial-text');
+const authorEl = document.getElementById('testimonial-author');
+const locationEl = document.getElementById('testimonial-location');
+const planEl = document.getElementById('testimonial-plan');
+const dotsContainer = document.getElementById('testimonial-dots');
+
+// Setup dots
+testimonials.forEach((_, idx) => {
+  const dot = document.createElement('span');
+  if (idx === 0) dot.classList.add('active');
+  dotsContainer.appendChild(dot);
+});
+
+function updateTestimonial(index) {
+  const t = testimonials[index];
+  textEl.textContent = `"${t.text}"`;
+  authorEl.textContent = t.author;
+  locationEl.textContent = t.location;
+  planEl.textContent = t.plan;
+
+  // update dots
+  dotsContainer.querySelectorAll('span').forEach((dot, i) => {
+    dot.classList.toggle('active', i === index);
+  });
+}
+
+function nextTestimonial() {
+  currentIndex = (currentIndex + 1) % testimonials.length;
+  updateTestimonial(currentIndex);
+}
+
+function prevTestimonial() {
+  currentIndex = (currentIndex - 1 + testimonials.length) % testimonials.length;
+  updateTestimonial(currentIndex);
+}
+
+// auto change every 2s
+setInterval(nextTestimonial, 2000);
+</script>
 
 
 </body>
