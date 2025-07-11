@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin Panel - Approve Consultations</title>
+  <link href="https://fonts.googleapis.com/css2?family=Segoe+UI&display=swap" rel="stylesheet"/>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #111;
+      color: #fff;
+      margin: 0;
+      padding: 2rem;
+    }
+
+    h1 {
+      color: #ff5c00;
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: #1e1e1e;
+    }
+
+    th, td {
+      padding: 1rem;
+      border: 1px solid #333;
+      text-align: left;
+    }
+
+    th {
+      background-color: #222;
+    }
+
+    .btn {
+      padding: 0.5rem 1rem;
+      border: none;
+      font-weight: bold;
+      cursor: pointer;
+      border-radius: 6px;
+    }
+
+    .approve-btn {
+      background-color: #4ade80;
+      color: #000;
+    }
+
+    .reject-btn {
+      background-color: #f87171;
+      color: #000;
+    }
+
+    .time-input {
+      padding: 0.4rem;
+      border: 1px solid #444;
+      border-radius: 4px;
+      background: #333;
+      color: #fff;
+    }
+
+    .approved-time {
+      color: #4ade80;
+    }
+
+    .rejected {
+      color: #f87171;
+    }
+
+    .pending {
+      color: #facc15;
+    }
+
+    .back {
+      display: block;
+      text-align: center;
+      margin-top: 2rem;
+      color: #ff5c00;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Admin Panel - Consulation Requests</h1>
+  <table id="requestTable">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>City</th>
+        <th>Status</th>
+        <th>Set Time</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- JS will populate this -->
+    </tbody>
+  </table>
+
+  <a class="back" href="consultation.html">← Back to Consultation Page</a> 
+
+  <script>
+    let requests = JSON.parse(localStorage.getItem('consultationRequests')) || [];
+
+    function saveRequests() {
+      localStorage.setItem('consultationRequests', JSON.stringify(requests));
+    }
+
+    function renderTable() {
+      const tbody = document.querySelector("#requestTable tbody");
+      tbody.innerHTML = "";
+
+      requests.forEach((req, index) => {
+        const row = document.createElement("tr");
+
+        row.innerHTML = `
+          <td>${req.name}</td>
+          <td>${req.city}</td>
+          <td class="${req.status === 'Approved' ? 'approved-time' : req.status === 'Rejected' ? 'rejected' : 'pending'}">
+            ${req.status} ${req.time ? `<br><small>${req.time}</small>` : ""}
+          </td>
+          <td>
+            <input class="time-input" type="text" placeholder="e.g. 10 AM, 5th May" value="${req.time || ''}" id="time-${index}" />
+          </td>
+          <td>
+            <button class="btn approve-btn" onclick="approveRequest(${index})">Approve</button>
+            <button class="btn reject-btn" onclick="rejectRequest(${index})">Reject</button>
+          </td>
+        `;
+        tbody.appendChild(row);
+      });
+    }
+
+    function approveRequest(index) {
+      const timeInput = document.getElementById(`time-${index}`).value.trim();
+      if (!timeInput) {
+        alert("Please set a time for consultation before approving.");
+        return;
+      }
+      requests[index].status = "Approved";
+      requests[index].time = timeInput;
+      saveRequests();
+      renderTable();
+      alert(`Approved! Consultation time set to: ${timeInput}`);
+    }
+
+    function rejectRequest(index) {
+      requests[index].status = "Rejected";
+      requests[index].time = "";
+      saveRequests();
+      renderTable();
+      alert("Request rejected.");
+    }
+
+    renderTable();
+  </script>
+</body>
+</html>
