@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Leave a Review | Policy Guru</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body {
+      background: #0f0f0f;
+      color: white;
+      font-family: 'Segoe UI', sans-serif;
+      padding: 2rem;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: auto;
+      background: #1f1f1f;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(255, 115, 0, 0.3);
+    }
+
+    h2 {
+      text-align: center;
+      color: #f97316;
+      margin-bottom: 1.5rem;
+    }
+
+    label {
+      display: block;
+      margin-top: 1rem;
+      font-weight: bold;
+      color: #f97316;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 0.7rem;
+      margin-top: 0.5rem;
+      background: #222;
+      border: 1px solid #444;
+      border-radius: 6px;
+      color: white;
+    }
+
+    textarea {
+      resize: vertical;
+    }
+
+    .stars {
+      direction: ltr;
+      display: flex;
+      gap: 10px;
+      margin-top: 0.5rem;
+    }
+
+    .stars input {
+      display: none;
+    }
+
+    .stars label {
+      font-size: 2rem;
+      color: #444;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+
+    .stars input:checked ~ label {
+      color: #444;
+    }
+
+    .stars input:checked + label,
+    .stars input:checked + label ~ label {
+      color: #f97316;
+    }
+
+    .stars label:hover,
+    .stars label:hover ~ label {
+      color: #f97316;
+    }
+
+    button {
+      width: 100%;
+      padding: 0.9rem;
+      margin-top: 1.5rem;
+      background-color: #f97316;
+      border: none;
+      color: white;
+      font-size: 1rem;
+      font-weight: bold;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #fb923c;
+    }
+
+    .back-link {
+      display: block;
+      text-align: center;
+      margin-top: 1rem;
+      color: #f97316;
+      text-decoration: none;
+    }
+
+    .back-link:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Leave a Review</h2>
+    <form id="reviewForm">
+      <label>Your Name</label>
+      <input type="text" name="name" required />
+
+      <label>Policy Name</label>
+      <input type="text" name="policy" required />
+
+      <label>City</label>
+      <input type="text" name="city" required />
+
+      <label>Rate Srikanta's Service</label>
+      <div class="stars">
+        <input type="radio" name="rating" id="star1" value="1" />
+        <label for="star1">★</label>
+        <input type="radio" name="rating" id="star2" value="2" />
+        <label for="star2">★</label>
+        <input type="radio" name="rating" id="star3" value="3" />
+        <label for="star3">★</label>
+        <input type="radio" name="rating" id="star4" value="4" />
+        <label for="star4">★</label>
+        <input type="radio" name="rating" id="star5" value="5" />
+        <label for="star5">★</label>
+      </div>
+
+      <label>Your Experience</label>
+      <textarea name="message" rows="4" placeholder="Write about your experience..." required></textarea>
+
+      <button type="submit">Submit Review</button>
+    </form>
+    <a href="view-review.html" class="back-link">← View All Reviews</a>
+  </div>
+
+  <script>
+    document.getElementById("reviewForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const formData = new FormData(this);
+      const review = {
+        name: formData.get("name"),
+        policy: formData.get("policy"),
+        city: formData.get("city"),
+        rating: formData.get("rating"),
+        message: formData.get("message"),
+        time: new Date().toLocaleString()
+      };
+
+      const allReviews = JSON.parse(localStorage.getItem("reviews")) || [];
+      allReviews.push(review);
+      localStorage.setItem("reviews", JSON.stringify(allReviews));
+
+      alert("✅ Review submitted successfully!");
+      this.reset();
+    });
+  </script>
+</body>
+</html>

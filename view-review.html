@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Customer Reviews | Policy Guru</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body {
+      background: #0f0f0f;
+      color: white;
+      font-family: 'Segoe UI', sans-serif;
+      padding: 2rem;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .header h2 {
+      color: #f97316;
+      font-size: 2.2rem;
+    }
+
+    .btn-add {
+      display: inline-block;
+      padding: 0.7rem 1.2rem;
+      background-color: #f97316;
+      color: white;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background 0.3s ease;
+      margin-top: 1rem;
+    }
+
+    .btn-add:hover {
+      background-color: #fb923c;
+    }
+
+    .reviews {
+      margin-top: 2rem;
+      display: grid;
+      gap: 1.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+
+    .review-card {
+      background: #1f1f1f;
+      padding: 1.5rem;
+      border-left: 5px solid #f97316;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(255, 115, 0, 0.2);
+    }
+
+    .review-card h3 {
+      margin: 0;
+      color: #f97316;
+      font-size: 1.2rem;
+    }
+
+    .review-card p {
+      margin: 0.5rem 0;
+    }
+
+    .rating {
+      color: gold;
+      margin-top: 0.5rem;
+    }
+
+    .timestamp {
+      color: #888;
+      font-size: 0.8rem;
+      margin-top: 0.5rem;
+    }
+
+    .empty {
+      text-align: center;
+      color: #999;
+      margin-top: 2rem;
+      font-size: 1rem;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <h2>🌟 Customer Reviews</h2>
+    <a href="review.html" class="btn-add">+ Add Review</a>
+  </div>
+
+  <div class="reviews" id="reviewContainer">
+    <!-- Reviews will be inserted here -->
+  </div>
+
+  <div class="empty" id="noReviews" style="display: none;">
+    No reviews submitted yet.
+  </div>
+
+  <script>
+    const container = document.getElementById("reviewContainer");
+    const noReviews = document.getElementById("noReviews");
+    const reviews = JSON.parse(localStorage.getItem("reviews")) || [];
+
+    if (reviews.length === 0) {
+      noReviews.style.display = "block";
+    } else {
+      reviews.reverse().forEach(r => {
+        const card = document.createElement("div");
+        card.className = "review-card";
+        card.innerHTML = `
+          <h3>${r.name} (${r.city})</h3>
+          <p><strong>Policy:</strong> ${r.policy}</p>
+          <p>${r.message}</p>
+          <div class="rating">⭐ ${'★'.repeat(r.rating)}${'☆'.repeat(5 - r.rating)}</div>
+          <div class="timestamp">${r.time}</div>
+        `;
+        container.appendChild(card);
+      });
+    }
+  </script>
+
+</body>
+</html>
