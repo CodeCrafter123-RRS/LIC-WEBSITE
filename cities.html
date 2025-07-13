@@ -1,97 +1,124 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>My Service Cities</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cities | Policy Guru</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background: #fef9f5;
-      padding: 2rem;
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #fff;
+      color: #111;
     }
 
-    #city-section {
-      display: none;
-      background-color: #fff3ea;
-      padding: 2rem;
-      border-radius: 10px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      max-width: 600px;
-      margin: auto;
+    .container {
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 1rem;
     }
 
-    h2 {
-      color: #ff5c00;
-      margin-bottom: 1rem;
+    h1 {
+      text-align: center;
+      color: #111;
     }
 
-    #searchInput {
+    .search-bar {
       width: 100%;
-      padding: 10px;
+      padding: 0.8rem;
+      font-size: 1rem;
+      margin-bottom: 2rem;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+
+    .card {
+      background-color: #111;
+      color: #fff;
+      border-radius: 10px;
+      padding: 1.5rem;
       margin-bottom: 1rem;
-      border: 1px solid #ddd;
-      border-radius: 5px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
 
-    ul {
-      list-style: none;
-      padding: 0;
+    .card h3 {
+      margin: 0;
+      font-size: 1.2rem;
     }
 
-    li {
-      padding: 8px;
-      background: #fff;
-      border: 1px solid #eee;
-      margin-bottom: 5px;
-      border-radius: 5px;
+    .btn-orange {
+      background-color: #f97316;
+      color: #fff;
+      padding: 0.6rem 1rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+
+    .btn-orange:hover {
+      background-color: #fb923c;
     }
   </style>
 </head>
 <body>
 
-<!-- Simulate a logged in user -->
+<div class="container">
+  <h1>🔍 Search Cities</h1>
+  <a href="dashboard.html" style="display:inline-block; margin-bottom: 1rem; color: #f97316; text-decoration: none; font-weight: bold;">← Back to Dashboard</a>
+
+  <input type="text" id="searchInput" class="search-bar" placeholder="Search for a city..."/>
+  <div id="cityCards">
+    <!-- Cards will be injected here -->
+  </div>
+</div>
+
+
 <script>
-  const currentUser = "Srikanta"; // You can change this to test
+  const cities = [
+    "aska", "bakilikana", "baramundali", "berhampur", "chasamahuli", "govindapur", "hinjilikatu",
+    "kabisurjyanaga", "kalasandhapur", "karadakana", "kulagadqa", "kukudakhandi", "kumarapani",
+    "nuagam", "pentha", "raktaphata", "seragada", "soroda", "sunamuhi", "sunantara"
+  ].sort();
 
-  document.addEventListener("DOMContentLoaded", () => {
-    if (currentUser.toLowerCase() === "srikanta") {
-      document.getElementById("city-section").style.display = "block";
-    }
-  });
+  const cityCardsContainer = document.getElementById("cityCards");
 
-  function filterCities() {
-    const input = document.getElementById("searchInput").value.toLowerCase();
-    const listItems = document.querySelectorAll("#cityList li");
+  function renderCards(filteredCities) {
+    cityCardsContainer.innerHTML = "";
 
-    listItems.forEach((li) => {
-      const city = li.textContent.toLowerCase();
-      li.style.display = city.includes(input) ? "block" : "none";
+    filteredCities.forEach(city => {
+      const card = document.createElement("div");
+      card.className = "card";
+
+      const cityName = document.createElement("h3");
+      cityName.textContent = city.charAt(0).toUpperCase() + city.slice(1);
+
+      const button = document.createElement("a");
+      button.className = "btn-orange";
+      button.textContent = "Click here to see customers";
+      button.href = `customers.html?city=${city}`;
+
+      card.appendChild(cityName);
+      card.appendChild(button);
+      cityCardsContainer.appendChild(card);
     });
   }
+
+  // Initial load
+  renderCards(cities);
+
+  // Search filter
+  document.getElementById("searchInput").addEventListener("input", function () {
+    const query = this.value.toLowerCase();
+    const filtered = cities.filter(city => city.includes(query));
+    renderCards(filtered);
+  });
 </script>
 
-<!-- Hidden City Section -->
-<div id="city-section">
-  <h2>Cities under My Service</h2>
-  <input type="text" id="searchInput" placeholder="Search city..." onkeyup="filterCities()"/>
-<ul id="cityList">
-  <li><a href="city-customers.html?city=berhampur">Berhampur</a></li>
-  <li><a href="city-customers.html?city=hinjilikatu">Hinjilikatu</a></li>
-  <li><a href="city-customers.html?city=seragada">Seragada</a></li>
-  <!-- Repeat for other cities -->
-</ul>
-
-</div>
-<script>
-cities.forEach(city => {
-  const li = document.createElement("li");
-  const link = document.createElement("a");
-  link.href = `city-customers.html?city=${city}`;
-  link.textContent = city.charAt(0).toUpperCase() + city.slice(1);
-  li.appendChild(link);
-  cityList.appendChild(li);
-});
-</script>
 
 </body>
 </html>

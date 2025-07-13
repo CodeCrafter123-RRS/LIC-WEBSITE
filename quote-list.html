@@ -1,0 +1,108 @@
+<!-- quotation-list.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Quotation List</title>
+  <style>
+    body {
+      background: #111;
+      color: white;
+      padding: 2rem;
+      font-family: sans-serif;
+    }
+
+    .quote-section {
+      margin-bottom: 3rem;
+    }
+
+    .quote-card {
+      background: #1f1f1f;
+      padding: 1rem;
+      margin: 0.5rem 0;
+      border-left: 4px solid #f97316;
+      border-radius: 8px;
+    }
+
+    h2 {
+      color: #f97316;
+    }
+
+    .group-title {
+      margin-top: 2rem;
+      color: #4ade80;
+    }
+  </style>
+</head>
+<body>
+  <h1>Quotation Requests</h1>
+  <div id="quoteList"></div>
+
+  <script>
+    function groupBy(data, keyFn) {
+      return data.reduce((acc, item) => {
+        const key = keyFn(item);
+        if (!acc[key]) acc[key] = [];
+        acc[key].push(item);
+        return acc;
+      }, {});
+    }
+
+    const quotes = JSON.parse(localStorage.getItem('quotes') || '[]');
+    quotes.sort((a, b) => new Date(b.date) - new Date(a.date)); // Sort by recent
+
+    const quoteList = document.getElementById('quoteList');
+
+    function formatDate(date) {
+      return new Date(date).toLocaleDateString('en-IN', {
+        day: '2-digit',
+        month: 'short',
+        year: 'numeric'
+      });
+    }
+
+    // Group by Year
+    const byYear = groupBy(quotes, q => new Date(q.date).getFullYear());
+
+    for (const year in byYear) {
+      const yearDiv = document.createElement('div');
+      yearDiv.classList.add('quote-section');
+      yearDiv.innerHTML = `<h2>${year}</h2>`;
+
+      const byMonth = groupBy(byYear[year], q => new Date(q.date).toLocaleString('default', { month: 'long' }));
+      for (const month in byMonth) {
+        const monthDiv = document.createElement('div');
+        monthDiv.innerHTML = `<h3 class="group-title">${month}</h3>`;
+
+        const byWeek = groupBy(byMonth[month], q => {
+          const date = new Date(q.date);
+          const oneJan = new Date(date.getFullYear(), 0, 1);
+          return `Week-${Math.ceil((((date - oneJan) / 86400000) + oneJan.getDay() + 1) / 7)}`;
+        });
+
+        for (const week in byWeek) {
+          const weekDiv = document.createElement('div');
+          weekDiv.innerHTML = `<h4 class="group-title">${week}</h4>`;
+
+          byWeek[week].forEach(q => {
+            weekDiv.innerHTML += `
+              <div class="quote-card">
+                <strong>${q.name}</strong> (${formatDate(q.date)})<br />
+                📞 ${q.phone} | 📧 ${q.email}<br />
+                📝 Plan: ${q.plan}<br />
+                ✏️ Message: ${q.message || 'None'}
+              </div>
+            `;
+          });
+
+          monthDiv.appendChild(weekDiv);
+        }
+
+        yearDiv.appendChild(monthDiv);
+      }
+
+      quoteList.appendChild(yearDiv);
+    }
+  </script>
+</body>
+</html>

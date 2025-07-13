@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Srikanta's Achievements</title>
+  <style>
+    body {
+      background: #111;
+      color: white;
+      font-family: 'Segoe UI', sans-serif;
+      padding: 2rem;
+    }
+
+    h1 {
+      color: #f97316;
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+
+    .category-title {
+      margin-top: 2rem;
+      font-size: 1.5rem;
+      color: #4ade80;
+      border-bottom: 1px solid #333;
+      padding-bottom: 0.5rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1rem;
+    }
+
+    .card {
+      background: #1f1f1f;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-bottom: 2px solid #f97316;
+    }
+
+    .card-content {
+      padding: 1rem;
+    }
+
+    .caption {
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 3rem;
+    }
+
+    .footer a {
+      color: #f97316;
+      text-decoration: none;
+    }
+
+    .footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🎉 Srikanta's Achievements</h1>
+  <div id="achievementContainer"></div>
+
+  <div class="footer">
+    <p><a href="dashboard.html">← Back to Dashboard</a> | <a href="edit-achievements.html">Edit Achievements</a></p>
+  </div>
+
+  <script>
+    const container = document.getElementById("achievementContainer");
+
+    function getAchievements() {
+      return JSON.parse(localStorage.getItem("achievements")) || [];
+    }
+
+    function groupByCategory(data) {
+      return data.reduce((acc, item) => {
+        if (!acc[item.category]) acc[item.category] = [];
+        acc[item.category].push(item);
+        return acc;
+      }, {});
+    }
+
+    function renderAchievements() {
+      const achievements = getAchievements();
+      if (achievements.length === 0) {
+        container.innerHTML = "<p>No achievements uploaded yet.</p>";
+        return;
+      }
+
+      const grouped = groupByCategory(achievements);
+
+      for (const category in grouped) {
+        const section = document.createElement("div");
+        section.innerHTML = `
+          <div class="category-title">${category}</div>
+          <div class="grid">
+            ${grouped[category].map(item => `
+              <div class="card">
+                <img src="${item.image}" alt="${item.caption}" />
+                <div class="card-content">
+                  <div class="caption">${item.caption}</div>
+                </div>
+              </div>
+            `).join("")}
+          </div>
+        `;
+        container.appendChild(section);
+      }
+    }
+
+    renderAchievements();
+  </script>
+
+</body>
+</html>

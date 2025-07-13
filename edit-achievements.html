@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Edit Achievements</title>
+  <style>
+    body {
+      background: #111;
+      color: white;
+      font-family: 'Segoe UI', sans-serif;
+      padding: 2rem;
+    }
+
+    h1 {
+      text-align: center;
+      color: #f97316;
+      margin-bottom: 2rem;
+    }
+
+    .form-group {
+      max-width: 600px;
+      margin: auto;
+      background: #1f1f1f;
+      padding: 2rem;
+      border-radius: 10px;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 0.8rem;
+      margin-bottom: 1rem;
+      background: #222;
+      border: 1px solid #444;
+      color: #fff;
+      border-radius: 6px;
+    }
+
+    button {
+      background: #f97316;
+      border: none;
+      padding: 0.8rem 1rem;
+      color: white;
+      font-weight: bold;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background: #fb923c;
+    }
+
+    .preview {
+      margin-top: 2rem;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .card {
+      background: #1f1f1f;
+      border-left: 4px solid #f97316;
+      margin-bottom: 1rem;
+      padding: 1rem;
+      border-radius: 8px;
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .card img {
+      width: 100px;
+      height: auto;
+      border-radius: 6px;
+    }
+
+    .card-content {
+      flex: 1;
+    }
+
+    .card .delete-btn {
+      background: red;
+      border: none;
+      padding: 0.5rem;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .back {
+      text-align: center;
+      margin-top: 2rem;
+    }
+
+    .back a {
+      color: #f97316;
+      text-decoration: none;
+    }
+
+    .back a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🛠️ Edit Achievements (Admin Panel)</h1>
+
+  <div class="form-group">
+    <input type="text" id="caption" placeholder="Caption for achievement" required />
+    <select id="category">
+      <option value="Award">🏆 Award / Certificate</option>
+      <option value="Office">🏢 Office Moment</option>
+      <option value="Talk">🎤 Talk / Presentation</option>
+    </select>
+    <input type="file" id="imageUpload" accept="image/*" />
+    <button onclick="addAchievement()">➕ Add Achievement</button>
+  </div>
+
+  <div class="preview">
+    <h2 style="color:#4ade80;">📸 Uploaded Achievements</h2>
+    <div id="achievementList"></div>
+  </div>
+
+  <div class="back">
+    <a href="achievements.html">← View Public Achievements</a>
+  </div>
+
+  <script>
+    const captionInput = document.getElementById('caption');
+    const categoryInput = document.getElementById('category');
+    const imageInput = document.getElementById('imageUpload');
+    const listContainer = document.getElementById('achievementList');
+
+    function getAchievements() {
+      return JSON.parse(localStorage.getItem('achievements')) || [];
+    }
+
+    function saveAchievements(data) {
+      localStorage.setItem('achievements', JSON.stringify(data));
+    }
+
+    function displayAchievements() {
+      listContainer.innerHTML = '';
+      const achievements = getAchievements();
+
+      if (achievements.length === 0) {
+        listContainer.innerHTML = '<p>No achievements uploaded yet.</p>';
+        return;
+      }
+
+      achievements.forEach((item, index) => {
+        const card = document.createElement('div');
+        card.className = 'card';
+
+        card.innerHTML = `
+          <img src="${item.image}" alt="Uploaded">
+          <div class="card-content">
+            <strong>${item.caption}</strong><br/>
+            Category: ${item.category}
+          </div>
+          <button class="delete-btn" onclick="deleteAchievement(${index})">🗑️</button>
+        `;
+
+        listContainer.appendChild(card);
+      });
+    }
+
+    function addAchievement() {
+      const caption = captionInput.value.trim();
+      const category = categoryInput.value;
+      const file = imageInput.files[0];
+
+      if (!caption || !file) {
+        alert("Please provide both image and caption.");
+        return;
+      }
+
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        const imageData = e.target.result;
+
+        const newEntry = {
+          caption,
+          category,
+          image: imageData
+        };
+
+        const achievements = getAchievements();
+        achievements.unshift(newEntry);
+        saveAchievements(achievements);
+        displayAchievements();
+
+        // Clear fields
+        captionInput.value = "";
+        categoryInput.value = "Award";
+        imageInput.value = "";
+      };
+
+      reader.readAsDataURL(file);
+    }
+
+    function deleteAchievement(index) {
+      const achievements = getAchievements();
+      achievements.splice(index, 1);
+      saveAchievements(achievements);
+      displayAchievements();
+    }
+
+    displayAchievements();
+  </script>
+
+</body>
+</html>

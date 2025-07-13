@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard | Policy Guru</title>
+  <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #0f0f0f;
+      color: #fff;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    header {
+      background: #f97316;
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.8rem;
+      color: white;
+    }
+
+    .container {
+      padding: 2rem;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .card {
+      background: #1f1f1f;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s ease, background 0.3s;
+      text-align: center;
+      cursor: pointer;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      background: #292929;
+    }
+
+    .card a {
+      color: white;
+      text-decoration: none;
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+
+    .card a:hover {
+      color: #f97316;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      color: #aaa;
+      margin-top: 3rem;
+      border-top: 1px solid #333;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Admin Dashboard</h1>
+  </header>
+
+  <div class="container">
+    <div class="grid">
+      <div class="card"><a href="add-customer.html">➕ Add Customer</a></div>
+      <div class="card"><a href="admin-login.html">🔐 Admin Login</a></div>
+      <div class="card"><a href="admin.html">🛠️ Consultation Request</a></div>
+      <div class="card"><a href="cities.html">🏙️ View Cities</a></div>
+      <div class="card"><a href="customers.html">👥 Customer List</a></div>
+      <div class="card"><a href="quote-list.html">📄 Quotation Requests</a></div>
+      <div class="card"><a href="edit-achievements.html">🏆 Edit Achievements</a></div>
+    </div>
+  </div>
+
+  <footer>
+    &copy; 2025 Policy Guru | Designed by Srikanta
+  </footer>
+
+</body>
+</html>

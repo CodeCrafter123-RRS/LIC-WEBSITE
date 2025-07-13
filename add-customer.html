@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Add Customer</title>
+  <style>
+    body {
+      background: #111;
+      color: white;
+      font-family: 'Segoe UI', sans-serif;
+      padding: 2rem;
+    }
+
+    .container {
+      max-width: 500px;
+      margin: auto;
+      background: #1f1f1f;
+      padding: 2rem;
+      border-radius: 10px;
+    }
+
+    h2 {
+      color: #f97316;
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 0.7rem;
+      margin-bottom: 1rem;
+      background: #222;
+      border: 1px solid #444;
+      color: #fff;
+      border-radius: 6px;
+    }
+
+    button {
+      width: 100%;
+      padding: 0.8rem;
+      background: #f97316;
+      color: #fff;
+      font-weight: bold;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #fb923c;
+    }
+
+    .success {
+      color: #4ade80;
+      text-align: center;
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Add Customer</h2>
+    <form id="customerForm">
+      <input type="text" name="name" placeholder="Customer Name" required />
+      <input type="tel" name="phone" placeholder="Phone Number" required />
+      <input type="email" name="email" placeholder="Email Address" required />
+
+      <select name="city" required>
+        <option value="">Select City</option>
+        <option value="berhampur">Berhampur</option>
+        <option value="aska">Aska</option>
+        <option value="seragada">Seragada</option>
+        <option value="soroda">Soroda</option>
+        <option value="hinjilikatu">Hinjilikatu</option>
+        <!-- Add all your 20 cities here -->
+      </select>
+
+      <button type="submit">Add Customer</button>
+    </form>
+    <div class="success" id="successMsg" style="display:none;">Customer added successfully!</div>
+  </div>
+
+  <script>
+    const form = document.getElementById("customerForm");
+    const successMsg = document.getElementById("successMsg");
+
+    form.addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const formData = new FormData(form);
+      const customer = {
+        name: formData.get("name"),
+        phone: formData.get("phone"),
+        email: formData.get("email")
+      };
+
+      const city = formData.get("city");
+
+      const allCustomers = JSON.parse(localStorage.getItem("customersByCity")) || {};
+      if (!allCustomers[city]) allCustomers[city] = [];
+
+      allCustomers[city].push(customer);
+      localStorage.setItem("customersByCity", JSON.stringify(allCustomers));
+
+      form.reset();
+      successMsg.style.display = "block";
+
+      setTimeout(() => {
+        successMsg.style.display = "none";
+      }, 2000);
+    });
+  </script>
+</body>
+</html>

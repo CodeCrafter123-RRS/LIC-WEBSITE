@@ -126,36 +126,45 @@
     const statusBody = document.getElementById('statusBody');
 
     // Temporary storage simulation
-    let requests = [];
+let requests = JSON.parse(localStorage.getItem("consultationRequests")) || [];
 
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
 
-      const formData = new FormData(form);
-      const entry = {
-        name: formData.get('name'),
-        city: formData.get('city'),
-        status: 'Pending'  // Default status
-      };
+  const formData = new FormData(form);
+  const entry = {
+    id: Date.now(),  // Unique ID
+    name: formData.get("name"),
+    email: formData.get("email"),
+    phone: formData.get("phone"),
+    city: formData.get("city"),
+    query: formData.get("query"),
+    status: "Pending"
+  };
 
-      requests.push(entry);
-      updateStatusTable();
-      form.reset();
-      alert('Request submitted! You’ll be contacted soon.');
-    });
+  requests.push(entry);
+  localStorage.setItem("consultationRequests", JSON.stringify(requests));
+  updateStatusTable();
+  form.reset();
+  alert("Request submitted! You’ll be contacted soon.");
+});
 
-    function updateStatusTable() {
-      statusBody.innerHTML = "";
-      requests.forEach(req => {
-        const row = document.createElement('tr');
-        row.innerHTML = `
-          <td>${req.name}</td>
-          <td>${req.city}</td>
-          <td class="${req.status === 'Approved' ? 'status-approved' : 'status-pending'}">${req.status}</td>
-        `;
-        statusBody.appendChild(row);
-      });
-    }
+function updateStatusTable() {
+  statusBody.innerHTML = "";
+  requests.forEach((req) => {
+    const row = document.createElement("tr");
+    row.innerHTML = `
+      <td>${req.name}</td>
+      <td>${req.city}</td>
+      <td class="${req.status === "Approved" ? "status-approved" : "status-pending"}">${req.status}</td>
+    `;
+    statusBody.appendChild(row);
+  });
+}
+
+updateStatusTable(); // show previous entries
+
+    
   </script>
 </body>
 </html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Customers by City</title>
+  <style>
+    body {
+      background: #111;
+      color: #fff;
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 2rem;
+    }
+
+    h1 {
+      color: #f97316;
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .customer-card {
+      background: #1f1f1f;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      border-left: 4px solid #f97316;
+      border-radius: 8px;
+    }
+
+    .back-btn {
+      display: inline-block;
+      background-color: #f97316;
+      color: white;
+      text-decoration: none;
+      padding: 0.6rem 1rem;
+      border-radius: 6px;
+      margin-bottom: 1.5rem;
+      font-weight: bold;
+    }
+
+    .back-btn:hover {
+      background-color: #fb923c;
+    }
+  </style>
+</head>
+<body>
+
+  <a href="cities.html" class="back-btn">← Back to Cities</a>
+  <h1 id="cityTitle">Customers</h1>
+
+  <div id="customerList"></div>
+
+<script>
+  // Get city from URL
+  const params = new URLSearchParams(window.location.search);
+  const city = params.get("city");
+
+  const cityTitle = document.getElementById("cityTitle");
+  const customerList = document.getElementById("customerList");
+
+  if (city) {
+    cityTitle.innerText = `Customers from ${city.charAt(0).toUpperCase() + city.slice(1)}`;
+
+    // ✅ Load customer data from localStorage (manual additions)
+    const allCustomers = JSON.parse(localStorage.getItem("customersByCity")) || {};
+    const customers = allCustomers[city.toLowerCase()] || [];
+
+    if (customers.length === 0) {
+      customerList.innerHTML = `<p>No customers found for this city.</p>`;
+    } else {
+      customers.forEach(c => {
+        const div = document.createElement("div");
+        div.className = "customer-card";
+        div.innerHTML = `
+          <strong>${c.name}</strong><br/>
+          📞 ${c.phone}<br/>
+          ✉️ ${c.email}
+        `;
+        customerList.appendChild(div);
+      });
+    }
+  } else {
+    cityTitle.innerText = "No city selected";
+  }
+</script>
+
+
+</body>
+</html>
